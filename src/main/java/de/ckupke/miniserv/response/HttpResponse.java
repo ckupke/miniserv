@@ -2,7 +2,13 @@ package de.ckupke.miniserv.response;
 
 import de.ckupke.miniserv.output.Output;
 
-public class SimpleResponse implements Response {
+public class HttpResponse implements Response {
+
+    private String text;
+
+    public HttpResponse(String text) {
+        this.text = text;
+    }
 
     @Override
     public void write(Output output) {
@@ -10,6 +16,6 @@ public class SimpleResponse implements Response {
                 "HTTP/1.0 200 OK\r\n"
                         + "Content-Type: text/html\r\n"
                         + "\r\n"
-                        + "Hello, world!");
+                        + text);
     }
 }
