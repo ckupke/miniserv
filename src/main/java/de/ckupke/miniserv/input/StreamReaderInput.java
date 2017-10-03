@@ -1,7 +1,7 @@
 package de.ckupke.miniserv.input;
 
-import de.ckupke.miniserv.request.HttpRequest;
 import de.ckupke.miniserv.request.Request;
+import de.ckupke.miniserv.request.RequestFactory;
 import de.ckupke.miniserv.request.RequestParams;
 
 import java.io.BufferedReader;
@@ -14,8 +14,10 @@ import java.util.List;
 public class StreamReaderInput implements Input {
 
     private InputStream inputStream;
+    private RequestFactory requestFactory;
 
-    public StreamReaderInput(InputStream inputStream) {
+    public StreamReaderInput(RequestFactory requestFactory, InputStream inputStream) {
+        this.requestFactory = requestFactory;
         this.inputStream = inputStream;
     }
 
@@ -35,6 +37,6 @@ public class StreamReaderInput implements Input {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new HttpRequest(new RequestParams(params));
+        return requestFactory.create(new RequestParams(params));
     }
 }

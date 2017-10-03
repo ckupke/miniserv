@@ -1,12 +1,9 @@
 package de.ckupke.miniserv.endpoint;
 
-import de.ckupke.miniserv.resource.Resource;
+public interface Endpoint extends Runnable {
 
-import java.util.List;
+    @Override
+    void run();
 
-public interface Endpoint {
-
-    void open(List<Resource> resources);
-
-    void close();
+    void stop();
 }
